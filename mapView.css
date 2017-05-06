@@ -30,3 +30,14 @@ html, body
 	background-color: #FAB;
 	margin: 5px 5px 5px 5px;
 }
+
+.noProblem {
+	display: none;
+	top: 50px;
+}
+
+.problem {
+	position: relative;
+	display: auto;
+	top: 50px;
+}
