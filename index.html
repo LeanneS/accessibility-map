@@ -35,11 +35,19 @@
 
 <script>
 
-  var entryModeHtml = "<form> Where? <br> <input type='text' name='where'><br></form>"
+  var entryModeHtml = "<form> What is the issue? <br> <input id='inputBox' type='text' name='where'><br></form>"
 
   function entryMode(coord) {
     $("#prompt").html("Enter issue at " + coord + "?");
     $("#box").html(entryModeHtml);
+    var issueObj = {
+    	latitude: coord.substr(0, coord.indexOf(',')),
+    	longitude: coord.split(' ')[1],
+    	text: "test"
+    };
+    console.log(JSON.stringify(issueObj));
+    issueData.push(issueObj);
+    issuesData.forEach(addProblem);
   }
   function viewMode() {
     $("#box").html("View Mode");
@@ -113,6 +121,9 @@
     coord = coord.substr(0, coord.indexOf(')'));
     coord = coord.split('(')[1];
     entryMode(coord);
+    // var x = document.getElementById("inputBox").value;
+    console.log(x);
+
 		popup
 			.setLatLng(e.latlng)
 			.setContent("You clicked the map at (" + coord + "). Add issue?")
