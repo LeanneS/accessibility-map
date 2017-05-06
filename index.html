@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,18 @@
 <div id="mapid" style="width: 600px; height: 400px;"></div>
 <script>
 
+  var issuesData = [
+   {
+     latitude : 43.471882,
+     longitude : -80.543972,
+     text : "Icy!",
+   }, 
+   {
+     latitude : 43.471173,
+     longitude : -80.550120,
+     text : "Broken button!"
+   }, 
+   ];
 
 
 	var mymap = L.map('mapid').setView([43.472396, -80.545112], 15);
@@ -43,6 +56,21 @@
     [43.476149, -80.543245]
 	]).addTo(mymap);
 
+  function addProblem(info) {
+    console.log("I worked.");
+    L.circle([info.latitude, info.longitude], 10, {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5
+    }).addTo(mymap).bindPopup(info.text);
+  }
+ 
+
+  console.log("Running.");
+
+  issuesData.forEach(addProblem);
+
+
 /*	L.marker([51.5, -0.09]).addTo(mymap)
 		.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 
@@ -56,6 +84,7 @@
 	var popup = L.popup();
 
 	function onMapClick(e) {
+    console.log("LOGGING.");
 		popup
 			.setLatLng(e.latlng)
 			.setContent("You clicked the map at " + e.latlng.toString() + ".  There is ice on the road there.")
@@ -70,3 +99,5 @@
 
 </body>
 </html>
+
+
