@@ -25,7 +25,9 @@
 <div id="mapid" class="map"></div>
 <div class="reportIssue">
 	<div class="textBox">Click the map for information</div>
-	<div class="information"></div>
+	<div id="info" class="information">
+		<div id="box" class="problem"></div>
+	</div>
 </div>
 <script>
 
@@ -56,7 +58,8 @@
 	L.polygon([
     [43.470449, -80.558051],
     [43.468960, -80.554380],
-    [43.469180, -80.550380],
+    [43.469090, -80.549610],
+    [43.466270, -80.546240],
     [43.464220, -80.541657],
     [43.470792, -80.538052],
     [43.476060, -80.542750]
@@ -91,12 +94,17 @@
 
 	function onMapClick(e) {
     console.log("LOGGING.");
+    var coord = e.latlng.toString();
+    coord = coord.substr(0, coord.indexOf(')'));
+    coord = coord.split('(')[1];
+    document.getElementById("info").innerText = 'Do you want to report an issue at (' + coord + ') ?';
+    // document.getElementById("box").className = "problem";
 		popup
 			.setLatLng(e.latlng)
-			.setContent("You clicked the map at " + e.latlng.toString() + ". Add issue?")
+			.setContent("You clicked the map at (" + coord + "). Add issue?")
 			.openOn(mymap);
 
-		
+
 	}
 
 	mymap.on('click', onMapClick);
