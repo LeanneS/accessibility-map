@@ -10,9 +10,10 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
+
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
 
     <link href="mapView.css" rel="stylesheet">
@@ -26,10 +27,24 @@
 <div class="reportIssue">
 	<div class="textBox">Click the map for information</div>
 	<div id="info" class="information">
+    <div id="prompt"> </div>
 		<div id="box" class="problem"></div>
 	</div>
 </div>
+
+
 <script>
+
+  var entryModeHtml = "<form> Where? <br> <input type='text' name='where'><br></form>"
+
+  function entryMode(coord) {
+    $("#prompt").html("Enter issue at " + coord + "?");
+    $("#box").html(entryModeHtml);
+  }
+  function viewMode() {
+    $("#box").html("View Mode");
+  }
+
 
   var issuesData = [
    {
@@ -97,14 +112,11 @@
     var coord = e.latlng.toString();
     coord = coord.substr(0, coord.indexOf(')'));
     coord = coord.split('(')[1];
-    document.getElementById("info").innerText = 'Do you want to report an issue at (' + coord + ') ?';
-    // document.getElementById("box").className = "problem";
+    entryMode(coord);
 		popup
 			.setLatLng(e.latlng)
 			.setContent("You clicked the map at (" + coord + "). Add issue?")
 			.openOn(mymap);
-
-
 	}
 
 	mymap.on('click', onMapClick);
