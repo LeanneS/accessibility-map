@@ -1,10 +1,10 @@
-
+﻿
 
 
 <!DOCTYPE html>
 <html>
 <head>
-	
+
 	<title>Quick Start - Leaflet</title>
 
 	<meta charset="utf-8" />
@@ -15,14 +15,18 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
 
-
+    <link href="mapView.css" rel="stylesheet">
 	
 </head>
 <body>
 
 
 
-<div id="mapid" style="width: 600px; height: 400px;"></div>
+<div id="mapid" class="map"></div>
+<div class="reportIssue">
+	<div class="textBox">Click the map for information</div>
+	<div class="information"></div>
+</div>
 <script>
 
   var issuesData = [
@@ -51,9 +55,11 @@
 
 	L.polygon([
     [43.470449, -80.558051],
+    [43.468960, -80.554380],
+    [43.469180, -80.550380],
     [43.464220, -80.541657],
     [43.470792, -80.538052],
-    [43.476149, -80.543245]
+    [43.476060, -80.542750]
 	]).addTo(mymap);
 
   function addProblem(info) {
@@ -87,8 +93,10 @@
     console.log("LOGGING.");
 		popup
 			.setLatLng(e.latlng)
-			.setContent("You clicked the map at " + e.latlng.toString() + ".  There is ice on the road there.")
+			.setContent("You clicked the map at " + e.latlng.toString() + ". Add issue?")
 			.openOn(mymap);
+
+		
 	}
 
 	mymap.on('click', onMapClick);
