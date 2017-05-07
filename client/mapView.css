@@ -1,0 +1,41 @@
+
+html, body
+{
+    height: 100%;
+}
+
+.map {
+	float: left;
+	width: 70%;
+	height: 100%;
+}
+
+.reportIssue {
+	width: 30%;
+	height: 100%;
+	float: right;
+}
+
+.textBox{
+	margin: 5px 5px 5px 5px;
+	height: 20%;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+.information {
+	height: 80%;
+	background-color: #FAB;
+	margin: 5px 5px 5px 5px;
+}
+
+.noProblem {
+	display: none;
+	top: 50px;
+}
+
+.problem {
+	position: relative;
+	display: auto;
+	top: 50px;
+}

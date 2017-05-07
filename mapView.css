@@ -31,6 +31,7 @@ html, body
 	margin: 5px 5px 5px 5px;
 }
 
+<<<<<<< HEAD
 .myButton {
 	text-align: center;
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -86,3 +87,15 @@ html, body
     text-align: center;
 }
 
+=======
+.noProblem {
+	display: none;
+	top: 50px;
+}
+
+.problem {
+	position: relative;
+	display: auto;
+	top: 50px;
+}
+>>>>>>> master
