@@ -75,7 +75,11 @@
               <input type="file" class="form-control-file" id="imageFile" aria-describedby="fileHelp">
             </div>
             <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
+            <div id='thanks'></div>
           </form>
+          <button class="btn btn-primary">  <a href="mailto:accessability@uwaterloo.ca?Subject=Fix%20this.">
+            <font color="white">
+              Email issue. </font> </a> </button>
         </div>
       </div>
     </div>
@@ -87,7 +91,7 @@
 <script>
 
   /* hacky static data */
-  var isStatic = true;
+  var isStatic = false;
 
 
   /* GLOBAL VARIABLES OF LAST CLICK */
@@ -204,9 +208,14 @@
   }
 
 
-  function initializeIssues(gotIssues) {
-    issuesData = gotIssues;
+  function initialiazeIssuesDefault() {
     issuesData.forEach(addProblem);
+  }
+
+  function initializeIssues(gotIssues) {
+    issuesData = gotIssues["issues"];
+    console.log(issuesData);
+    initialiazeIssuesDefault();
   }
 
 
@@ -217,7 +226,7 @@
   function getData(callback) {
 
     if (isStatic) {
-      callback(issuesData);
+      initializeIssuesDefault();
     }
     else {
       $.ajax({
@@ -235,7 +244,7 @@
     if (!isStatic) {
       $.ajax({
         type: 'POST',
-        data: JSON.stringify(data),
+        data: JSON.stringify(issue),
         contentType: 'application/json',
         url: 'http://localhost:3000/newissue',						
       });
@@ -262,7 +271,10 @@
              picture: "hardcode.jpg",
           }
           updateData(issue);
+          $("#thanks").html("Thank you for reporting!");
+          $('#issue_form').trigger("reset");
       });
+
   });
 
 
