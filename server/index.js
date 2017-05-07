@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/nodetest1');
+var db = monk('localhost:27017/issues');
 
 //var index = require('./routes/index');
 //var users = require('./routes/users');
@@ -29,11 +29,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use(function(req,res,next){
-//    req.db = db;
-//    next();
-//});
-
 app.get('/', function (req, res) {
   res.send('Hello World!')
 })
@@ -47,9 +42,38 @@ app.get('/issuelist', function(req, res) {
 });
 
 
-app.post('/newissue', function(req, res){
+app.post('/newissue', function(req, res) {
+
 	console.log('body: ' + JSON.stringify(req.body));
+
+  var latitude = req.body.latitude;
+  var longitude = req.body.longitude;
+  var type = req.body.type;
+  var where = req.body.where;
+  var what = req.body.what;
+  var picture = req.body.picture;
+  var collection = db.get('issues');
+
+  collection.insert({
+     latitude : latitude,
+     longitude : longitude,
+     type: type,
+     where: where,
+     what: what,
+     picture: picture,
+  }
+  , function (err, doc) {
+      if (err) {
+          // If it failed, return error
+          res.send("There was a problem adding the information to the database.");
+      }
+      else {
+          // And forward to success page
+          res.redirect("userlist");
+      }
+  });
 });
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
