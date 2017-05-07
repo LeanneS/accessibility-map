@@ -14,12 +14,10 @@ html, body
 	width: 30%;
 	height: 100%;
 	float: right;
-	background-color: #123456;
 }
 
 .textBox{
 	margin: 5px 5px 5px 5px;
-	background-color: #123000;
 	height: 20%;
 	text-align: center;
 	color: #FFFFFF;
