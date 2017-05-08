@@ -1,11 +1,11 @@
-db.issues.insert([{
-     latitude : 43.471882,
-     longitude : -80.543972,
-     text : "Icy!",
-   }, 
-   {
-     latitude : 43.471173,
-     longitude : -80.550120,
-     text : "Broken button!"
-   }, ]
+db.issues.insert([
+    {
+       latitude : 43.467895,
+       longitude :  -80.541346,
+       type: "Physical",
+       where: "Hagey Hall 106",
+       what: "Low Resolution Projector.",
+       picture: "img1.png",
+    },
+   ]
 );
